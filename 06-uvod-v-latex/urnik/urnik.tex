@@ -8,6 +8,7 @@
 \usepackage[T1]{fontenc} 
 \usepackage[utf8]{inputenc}
 \usepackage[slovene]{babel}
+\usepackage{amsmath}
 
 
 \begin{document}
@@ -20,7 +21,8 @@
 \title{Izdelava urnikov}
 \author{Nejc Širovnik}
 \date{14. 10. 2019}
-\maketitle
+\maketitle{Povzetek}
+
 % začetek povzetka
 V članku so predstavljeni nekateri postopki za avtomatsko izdelavo urnikov. Opisani so
 potrebni vhodni podatki, naštete so omejitve, ki jih je potrebno upoštevati pri izdelavi
@@ -74,7 +76,8 @@ matematika.
 % Namig: pomagajte si z iskanjem in zamenjavo komentarjev, kot so v spodnjem primeru.
 
 % začetek okolja verbatim
-<profesor>
+|\begin{verbatim}
+   <profesor>
    <ime>Janez</ime>
    <priimek>Novak</priimek>
    <predmet>
@@ -82,6 +85,7 @@ matematika.
       <steviloUrNaTeden>3</steviloUrNaTeden>
    </predmet>
 </profesor>
+\end{verbatim}
 % konec okolja verbatim
 
 \noindent 
@@ -108,32 +112,36 @@ katere podatke naj vsebujejo.
 
 
 \begin{itemize}
-      \item Razred /Profesor/ vsebuje osebne podatke profesorja (ime in priimek) ter
+      \item Razred \emph{Profesor} vsebuje osebne podatke profesorja (ime in priimek) ter
       podatke o predmetih, ki jih predava. Hkrati moramo za vsako uro v tednu vedeti, če
       je profesor takrat že zaseden, da mu slučajno ne bi dodelili dveh predavanj v istem
       časovnem terminu. To je najlažje preverjati s pomočjo tabele zasedenosti, ki je
       podrobneje opisana na koncu poglavja.
    
-      \item Razred /Skupina/ predstavlja skupino študentov. Kot podatke torej potrebujemo
+      \item Razred \emph{Skupina} predstavlja skupino študentov. Kot podatke torej potrebujemo
       smer skupine (npr. pedagoška matematika) ter število študentov v njej. Podobno kot pri
       profesorjih, tudi tukaj potrebujemo tabelo zasedenosti.
    
-      \item Razred /Predavalnica/ nosi podatke o kapaciteti predavalnice, njeno oznako
+      \item Razred \emph{Predavalnica} nosi podatke o kapaciteti predavalnice, njeno oznako
       ter podatke o zasedenosti, ki so predstavljeni s tabelo.
    
-      \item Razred /Predmet/ vsebuje podatke o posameznih predmetih. Kot podatke tega
+      \item Razred \emph{Predmet} vsebuje podatke o posameznih predmetih. Kot podatke tega
       objekta je smiselno navesti ime predmeta ter tedensko število ur njegove izvedbe.
       Zanima nas tudi, katerim skupinam je predmet namenjen, ter v katerem semestru se bo
       predaval.
 \end{itemize}
 
-\noindent 
 % To popravite z ukazom `\noindent` ali pa tako, da odstranite prazno vrstico.
 % (Nekoliko lepše izgleda, če v prazno vrstico vstavite % za komentar.)
+%
+\noindent 
+
 Kar pri treh razredih je kot podatek navedena tabela zasedenosti, zato si jo podrobneje
 oglejmo. Vsako tabelo določata njena velikost ter tip vrednosti. Naslednji izračun nam
 poda velikost tabele:
-??
+
+\text {$velikostTabele=steviloUrNaDan\cdot steviloDelovnihDni$}
+
 Če bi predpostavili, da študijski dan traja od sedme ure zjutraj do osmih zvečer in da
 imamo pet delovnih dni, je velikost naše tabele 65 polj. Velikost te tabele torej pove,
 koliko ur na teden obravnavamo. Ker se šolski tedni periodično ponavljajo, je seveda
@@ -303,7 +311,8 @@ pomočjo požrešne metode, je lahko namreč še vedno za nekaj nivojev boljši 
 Naslednje vrstice bodo pojasnile, kako implementirati postopek požrešne metode za primer urnika.
 
 % začetek okolja verbatim
-(1) Sprehod po vseh predmetih.
+\begin{verbatim}
+   (1) Sprehod po vseh predmetih.
 {
    (2) Sprehod po vseh predavalnicah.
    {
@@ -312,6 +321,7 @@ Naslednje vrstice bodo pojasnile, kako implementirati postopek požrešne metode
    }
    (5) Vstavljanje srečanja v urnik.
 }
+\end{verbatim}
 % konec okolja verbatim
 
 \noindent 
@@ -386,12 +396,14 @@ je najboljša rešitev iz okolice lokalnega maksimuma ponavadi kar lokalni maksi
 Nadgradnja lokalnega vzpenjanja je jasno razvidna iz naslednje sheme.
 
 % začetek okolja verbatim
-(1) Izvajaj dokler...
+\begin{verbatim}
+   (1) Izvajaj dokler...
 {
    (2) Iz sistema okolic izberi okolico.
    (3) Iz okolice izberi spremembo.
    (4) Izvedi spremembo.
 }
+\end{verbatim}
 % konec okolja verbatim
 
 \noindent 
